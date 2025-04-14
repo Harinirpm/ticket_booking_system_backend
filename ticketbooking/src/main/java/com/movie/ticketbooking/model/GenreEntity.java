@@ -2,6 +2,8 @@ package com.movie.ticketbooking.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,15 +20,16 @@ public class GenreEntity {
 	@Column(name = "genreId")
 	private Long genreId;
 	@Column(name = "genrename", unique = true, nullable=false)
-	private String name;
+	private String genrename;
 	
+	 @JsonIgnore
 	@OneToMany(mappedBy = "genre") //movies -> genre field 
 	private List<MoviesEntity> movies;
 	
 	
-	public GenreEntity(Long genreId, String name) {
+	public GenreEntity(Long genreId, String genrename) {
 		this.genreId = genreId;
-		this.name = name;
+		this.genrename = genrename;
 	}
 	
 	public GenreEntity() {}
@@ -37,11 +40,11 @@ public class GenreEntity {
 	public void setGenreId(long genreId) {
 		this.genreId = genreId;
 	}
-	public String getName() {
-		return name;
+	public String getGenrename() {
+		return genrename;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setGenreame(String genrename) {
+		this.genrename = genrename;
 	}
 	
 	

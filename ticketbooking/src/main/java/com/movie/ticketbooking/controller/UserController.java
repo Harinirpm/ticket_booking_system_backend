@@ -17,6 +17,7 @@ import com.movie.ticketbooking.model.UserEntity;
 import com.movie.ticketbooking.services.UserServices;
 
 @RestController
+@RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 

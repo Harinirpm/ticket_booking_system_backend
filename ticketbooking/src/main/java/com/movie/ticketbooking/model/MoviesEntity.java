@@ -31,7 +31,7 @@ public class MoviesEntity {
 	
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="langId", referencedColumnName = "languageId")
+	@JoinColumn(name="languageId", referencedColumnName = "languageId")
 	private LanguageEntity language;
 	
 	public MoviesEntity(Long movieId, String title, String description, int duration, GenreEntity genre,
@@ -44,6 +44,8 @@ public class MoviesEntity {
 		this.genre = genre;
 		this.language = language;
 	}
+	public MoviesEntity() {}
+	
 	public Long getMovieId() {
 		return movieId;
 	}

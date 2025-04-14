@@ -2,6 +2,8 @@ package com.movie.ticketbooking.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,16 +18,17 @@ public class LanguageEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "languageId")
-	private Long langId;
+	private Long languageId;
 	@Column(name = "langname", unique = true, nullable=false)
 	private String langname;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "language")
 	private List<MoviesEntity> movies;
 	
 	
-	public LanguageEntity(Long langId, String langname) {
-		this.langId = langId;
+	public LanguageEntity(Long languageId, String langname) {
+		this.languageId = languageId;
 		this.langname = langname;
 	}
 	public LanguageEntity() {}
@@ -37,11 +40,11 @@ public class LanguageEntity {
 	public void setMovies(List<MoviesEntity> movies) {
 		this.movies = movies;
 	}
-	public Long getLangId() {
-		return langId;
+	public Long getLanguageId() {
+		return languageId;
 	}
-	public void setLangId(Long langId) {
-		this.langId = langId;
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
 	}
 	public String getLangname() {
 		return langname;
