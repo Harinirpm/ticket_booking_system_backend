@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.movie.ticketbooking.model.LoginRequest;
 import com.movie.ticketbooking.model.UserEntity;
 import com.movie.ticketbooking.services.UserServices;
 
@@ -30,12 +31,22 @@ public class UserController {
 		return userService.addUser(user);
 	}
 	
+//	@GetMapping("/login")
+//	public ResponseEntity<UserEntity> registerUser(@RequestBody UserEntity user){
+//		UserEntity savedUser = userService.addUser(user);
+//		return new ResponseEntity<>(savedUser, HttpStatus.OK);
+//	}
+//	
 	@PostMapping("/login")
-	public ResponseEntity<UserEntity> registerUser(@RequestBody UserEntity user){
-		UserEntity savedUser = userService.addUser(user);
-		return new ResponseEntity<>(savedUser, HttpStatus.OK);
-	}
-	
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        UserEntity user = userService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        }
+    }
+
 	
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/getAllUsers")

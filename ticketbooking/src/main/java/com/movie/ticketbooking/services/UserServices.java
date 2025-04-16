@@ -2,6 +2,7 @@ package com.movie.ticketbooking.services;
 
 import java.util.List;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class UserServices {
 		return userRepo.findAll();
 	}
 	
-	
+	public UserEntity authenticate(String email, String password) {
+       
+        return userRepo.findByEmailAndPassword(email, password);
+    }
+
+
 	
 }
