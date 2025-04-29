@@ -11,5 +11,9 @@ import com.movie.ticketbooking.model.UserEntity;
 public interface UsersRepository extends JpaRepository<UserEntity,Integer>{
 
 	Optional<UserEntity> findByUsername(String username);
-	UserEntity findByEmailAndPassword(String email, String password);
+	Optional<UserEntity> findByEmailAndPassword(String email, String password);
+	Optional<UserEntity> findByEmail(String email);
+	Optional<UserEntity> findByRole(String role);
+	Optional<UserEntity> findByPassword(String password);
+//	Optional<UserEntity> getUserByEmail(String email);
 }

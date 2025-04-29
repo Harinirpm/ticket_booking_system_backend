@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserEntityPrincipal implements UserDetails{
 	@Autowired
-	UserEntity users;
+	private final UserEntity users;
 	
 	public UserEntityPrincipal(UserEntity users){
 		this.users = users;

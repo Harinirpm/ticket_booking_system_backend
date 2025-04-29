@@ -14,7 +14,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="languages")
-public class LanguageEntity {
+public class LanguageEntity {	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "languageId")
@@ -51,10 +52,5 @@ public class LanguageEntity {
 	}
 	public void setLangname(String langname) {
 		this.langname = langname;
-	}
-	
-	
-	
-	
-	
+	}	
 }

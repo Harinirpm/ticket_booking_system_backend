@@ -8,31 +8,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
 public class UserEntity {
 	
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "user_id")
 		private int userId;
-	    @Column(name = "name")
 		private String username;
-	    @Column(name = "role")
 		private String role;
-	    @Column(name ="mail_id")
 		private String email;
-	    @Column (name = "password")
 	    private String password;
-	    @Column (name = "phone_no")
-	    private String phonenumber;
 	    
-	    public UserEntity(int userId, String username, String role, String email,String password,String phonenumber) {
+	    public UserEntity(int userId, String username, String role, String email,String passwordr) {
 	    	this.userId = userId;
 	    	this.username = username;
 	    	this.role = role;
 	    	this.email = email;
 	    	this.password = password;
-	    	this.phonenumber = phonenumber;
 	    }
 	    public UserEntity() {
 	    	
@@ -67,12 +58,12 @@ public class UserEntity {
 	    public String getPassword() {
 	        return password;
          }
-	    public void setPhonenumber(String phonenumber) {
-	    	this.phonenumber = phonenumber;
-	    }
-	    public String getPhonenumber() {
-	    	return phonenumber;
-	    }
+//	    public void setPhonenumber(String phonenumber) {
+//	    	this.phonenumber = phonenumber;
+//	    }
+//	    public String getPhonenumber() {
+//	    	return phonenumber;
+//	    }
 	    
 	    
 	}
