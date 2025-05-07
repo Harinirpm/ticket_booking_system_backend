@@ -48,23 +48,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
         String token = authHeader.substring(7);
         String userEmail = jwtutil.getEmailFromToken(token);
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        	
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
-
+            System.out.println("User Details :"+userDetails);
             if (!jwtutil.isTokenExpired(token)) {
             	//extract the role from token
             	String role = jwtutil.getRoleFromToken(token);
-            	//making authority for role
-            	SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+            	System.out.println("role : "+role);
             	//create authentication token
             	UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, List.of(authority));
+            	        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             	//attach meta data about the http request 
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                System.out.println("Auth Token "+authToken);
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }

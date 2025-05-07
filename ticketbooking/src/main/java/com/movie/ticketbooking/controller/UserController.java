@@ -51,17 +51,22 @@ public class UserController {
 
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@GetMapping("admin/getAllUsers")
+	@GetMapping("/admin/getAllUsers")
 	public List<UserEntity> getAllUsers(){
 		return userService.getAllUsers();
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/admin/profile")
+    @GetMapping("/users/profile")
     public ResponseEntity<String> profile() {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String username = authentication.getName(); 
         return ResponseEntity.ok("Welcome , this is your profile page.");
     }
 	
+	@GetMapping("/admin/test-auth")
+	public ResponseEntity<?> testAuth(Authentication authentication) {
+	    return ResponseEntity.ok(authentication.getAuthorities());
+	}
+
 }

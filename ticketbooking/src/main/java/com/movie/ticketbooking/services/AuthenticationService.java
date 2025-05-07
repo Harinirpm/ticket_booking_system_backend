@@ -36,10 +36,10 @@ public class AuthenticationService {
         UserEntity user = userRepo.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         
-        System.out.println("Email from request: " + loginRequest.getEmail());
-        System.out.println("Raw password from request: " + loginRequest.getPassword());
-        System.out.println("Encoded password in DB: " + user.getPassword());
-        System.out.println("Password match result: " + passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()));
+//        System.out.println("Email from request: " + loginRequest.getEmail());
+//        System.out.println("Raw password from request: " + loginRequest.getPassword());
+//        System.out.println("Encoded password in DB: " + user.getPassword());
+//        System.out.println("Password match result: " + passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()));
 
         return user;
     }
